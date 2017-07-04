@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="newframework">
+    <!--
+	<test name="simple">
+	    <parameters>
+	        <parameter name="browser" value="chrome" />
+	    </parameters>
+		<classes>
+			<class
+				name="com.clarence.tests.ASimpleTest" />
+		</classes>
+	</test>
+	-->
+	<test name="basic">
+	    <parameters>
+	        <parameter name="browser" value="chrome" />
+	    </parameters>
+		<classes>
+			<class
+				name="com.clarence.tests.BasicTestsToUse" />
+		</classes>
+	</test>
+	<!--
+	<test name="simple">
+	    <parameters>
+	        <parameter name="browser" value="chrome" />
+	    </parameters>
+		<classes>
+			<class
+				name="com.clarence.tests.ASimpleTest" />
+		</classes>
+	</test>
+	-->
+</suite>
