@@ -15,6 +15,11 @@
 	    <parameters>
 	        <parameter name="browser" value="chrome" />
 	    </parameters>
+	    <groups>
+	        <run>
+	           <include name = "chika" />
+	        </run>
+	    </groups>
 		<classes>
 			<class
 				name="com.clarence.tests.BasicTestsToUse" />
