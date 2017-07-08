@@ -9,8 +9,8 @@ public class BasicTestsToUse {
 	@DataProvider(name = "test1")
 	public Object[][] createData1() {
 		return new Object[][]{
-			{"Cedric", new Integer(36)},
-			{"Anne", new Integer(37)}
+			{"Cedric", new Integer(36), "Cedric 36"},
+			{"Anne", new Integer(37), "Anne 37"}
 		};
 	}
 	
@@ -36,10 +36,10 @@ public class BasicTestsToUse {
 		Assert.assertEquals("Your name should be: Mike", AnotherPrinter("Mike"));
 	}
 	
-	@Test(groups= {"chika"}, dataProvider = "test1")
-	public void TestThree(String name, int age)
+	@Test(groups = {"dataprov"},dataProvider = "test1")
+	public void TestThree(String name, int age, String expected)
 	{
-		System.out.println(name + " " + age);
+		Assert.assertEquals(name + " " + age, expected);
 	}
 
 }

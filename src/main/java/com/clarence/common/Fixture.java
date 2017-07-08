@@ -75,9 +75,12 @@ public class Fixture {
 		// Take screenshot:
 		screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		FileOutputStream outPut = new FileOutputStream(screenshotfile);
-		try {
+		try
+		{
 			outPut.write(screenshot);
-		} finally {
+		} 
+		finally
+		{
 			outPut.close();
 		}
 	}

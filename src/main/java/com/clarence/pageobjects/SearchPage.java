@@ -4,7 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 import com.clarence.common.BasePageObject;
 
-public class SearchPage extends BasePageObject{
+public class SearchPage extends BasePageObject
+{
 	private String searchLocator = "q";
 	private String resultsLocator = "//div[contains(@class,'_NId')]/..//div[@class='g']";
 

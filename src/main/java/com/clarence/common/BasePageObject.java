@@ -17,31 +17,36 @@ public class BasePageObject {
 		this.driver = driver;
 	}
 
-	protected WebElement findByName(String name) {
+	protected WebElement findByName(String name) 
+	{
 		return new WebDriverWait(driver, defaultTimeout)
 				.until(ExpectedConditions.visibilityOfElementLocated(By.name(name)));
 	}
 
-	protected WebElement findByXPath(String xpath) {
+	protected WebElement findByXPath(String xpath) 
+	{
 		return new WebDriverWait(driver, defaultTimeout)
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 	}
 
-	protected WebElement findById(String id) {
+	protected WebElement findById(String id) 
+	{
 		return new WebDriverWait(driver, defaultTimeout)
 				.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
 	}
 
-	protected WebElement findByCss(String css) {
+	protected WebElement findByCss(String css) 
+	{
 		return new WebDriverWait(driver, defaultTimeout)
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
 	}
 
-	private WebElement parseLocator(String locator) {
+	private WebElement parseLocator(String locator) 
+	{
 		WebElement theElem;
 		if (locator.startsWith("//")) {
 			theElem = findByXPath(locator);
-		} else if (locator.startsWith("name[") || locator.startsWith("input[")) {
+		} else if (locator.startsWith("name[") || locator.startsWith("input[") || locator.startsWith("button")) {
 			theElem = findByCss(locator);
 		} else if (locator.startsWith("q")) {
 			theElem = findByName(locator);
@@ -51,20 +56,29 @@ public class BasePageObject {
 		return theElem;
 	}
 
-	protected List<WebElement> multipleElements(String locator) {
+	protected List<WebElement> multipleElements(String locator) 
+	{
 		return new WebDriverWait(driver, defaultTimeout)
 				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
 	}
 
-	protected void type(String text, String locator) {
+	protected void type(String text, String locator) 
+	{
 		WebElement theElem = parseLocator(locator);
 		theElem.sendKeys(text);
 	}
 
-	protected void typeAndSubmit(String text, String locator) {
+	protected void typeAndSubmit(String text, String locator) 
+	{
 		WebElement theElem = parseLocator(locator);
 		theElem.sendKeys(text);
 		theElem.sendKeys(Keys.RETURN);
+	} 
+	
+	protected void click(String element)
+	{
+		WebElement theElem = parseLocator(element);
+		theElem.click();
 	}
 
 }
