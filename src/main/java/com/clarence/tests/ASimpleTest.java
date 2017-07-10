@@ -8,7 +8,9 @@ import org.testng.annotations.Test;
 import com.clarence.common.Fixture;
 import com.clarence.pageobjects.LinkedInHome;
 import com.clarence.pageobjects.LinkedInLogin;
+import com.clarence.pageobjects.LinkedInProfile;
 import com.clarence.pageobjects.SearchPage;
+
 
 public class ASimpleTest extends Fixture {
 
@@ -23,15 +25,24 @@ public class ASimpleTest extends Fixture {
 	}
 	
 	@Test(enabled = true)
-	public void LinkedInTest() throws InterruptedException
+	public void LinkedInTest()
 	{
-		LinkedInLogin login = new LinkedInLogin(driver);
-		login.login("clarenciotan@gmail.com", "deadPoolHottie19");
+		try 
+		{
+			LinkedInLogin login = new LinkedInLogin(driver);
+			login.login("clarenciotan@gmail.com", "deadPoolHottie19");
+			
+			LinkedInHome home = new LinkedInHome(driver);
+			home.GoToMyProfile();
+			
+			LinkedInProfile profile = new LinkedInProfile(driver);
+			Assert.assertEquals(profile.getProfileName(), "Clarencia Tan");
+			Assert.assertEquals(profile.getProfilePosition(), "Senior QA Engineer | QA Lead at Sitecore");
 		
-		LinkedInHome home = new LinkedInHome(driver);
-		home.GoToMyProfile();
-		
-		
-		Thread.sleep(5000);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

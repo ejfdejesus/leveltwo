@@ -16,6 +16,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -104,10 +107,15 @@ public class Fixture {
 		driver.get(URL);
 	}
 
-	@AfterTest
-	public void endTest() throws InterruptedException, IOException 
+	//ITestResult not allowed at @AfterTest
+	@AfterMethod
+	public void endTest(ITestResult result) throws InterruptedException, IOException 
 	{
 		Thread.sleep(1500);
+		if (result.getStatus() == ITestResult.FAILURE)
+		{
+			takeScreenshot(result.getName() + "--FAILURE");
+		}
 		driver.quit();
 	}
 }

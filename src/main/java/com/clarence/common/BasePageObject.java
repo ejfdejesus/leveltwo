@@ -41,12 +41,13 @@ public class BasePageObject {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
 	}
 
-	private WebElement parseLocator(String locator) 
+	protected WebElement parseLocator(String locator) 
 	{
 		WebElement theElem;
 		if (locator.startsWith("//")) {
 			theElem = findByXPath(locator);
-		} else if (locator.startsWith("name[") || locator.startsWith("input[") || locator.startsWith("button")) {
+		} else if (locator.startsWith("name[") || locator.startsWith("input[") || locator.startsWith("button")
+				|| locator.startsWith("h1") || locator.startsWith("h2")) {
 			theElem = findByCss(locator);
 		} else if (locator.startsWith("q")) {
 			theElem = findByName(locator);

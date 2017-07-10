@@ -11,8 +11,9 @@ public class LinkedInHome extends BasePageObject {
 	private String JobsLink = "//span[contains(text(), 'Jobs')]/../..//a";
 	private String MessagingLink = "//span[contains(text(), 'Messaging')]/../..//a";
 	private String NotificationsLink = "//span[contains(text(), 'Notifications')]/../..//a";
-//	private String ProfileButton = "//span[contains(text(), 'Me')]/../../..//button";
+    //	private String ProfileButton = "//span[contains(text(), 'Me')]/../../..//button";
 	private String ProfileButton = "button span[class='nav-item__title nav-item__dropdown-trigger--title']";
+	private String ViewProfileLink = "//a[@data-control-name='nav.settings_view_profile']/..//span[contains(@class, 'nav-settings__view-profile-link')]";
 			
 	public LinkedInHome(WebDriver driver) 
 	{
@@ -27,6 +28,7 @@ public class LinkedInHome extends BasePageObject {
 	public void GoToMyProfile()
 	{
 		click(ProfileButton);
+		click(ViewProfileLink);
 	}
 
 }
